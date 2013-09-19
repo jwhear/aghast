@@ -1,4 +1,3 @@
-
 import std.stdio,
 	std.algorithm,
 	std.conv,
@@ -150,7 +149,7 @@ enum words = [
 "demanding", "dense", "dependable", "deserted", "detailed", "determined",
 "devoted", "different", "difficult", "digital", "diligent", "dimpled",
 "dimwitted", "direct", "disastrous", "disfigured", "disgusting", "disloyal",
-"dismal", "distant", "dreary", "dirty", "disguised", "dishonest", "dismal",
+"dismal", "distant", "dreary", "dirty", "disguised", "dishonest", "large",
 	],
 
 	// List 2: more adjectives
