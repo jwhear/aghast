@@ -11,6 +11,7 @@ For example, we can invoke aghast with some hashes we got from git:
 
    Note that Aghast only bothers with the first six characters of the hash, thus
 these produce the same results:
+
     $ aghast 9f23a18123901 9f23a1812 9f23a1
      Cluttered Essential Stingray
      Cluttered Essential Stingray
@@ -18,6 +19,7 @@ these produce the same results:
 
    Aghast can also go the other way, translating the human-friendly names back into
 hashes:
+
     $ aghast 'Cluttered Essential Stingray' 'Colorful Ill Cockroach'
      9f23a1
      a2ce23 
@@ -30,4 +32,4 @@ also gladly read from STDIN for you if '-' is supplied as an argument:
 
 ABOUT
 -----
-   Written by Justin Whear <justin@economicmodeling.com>
+   Written by Justin Whear
