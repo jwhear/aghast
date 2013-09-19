@@ -14,6 +14,8 @@ void main(string[] args)
 		"help|h", { writeln(HelpText); quit = true; }
 	);
 
+	if (quit) return;
+
     void process(Input)(Input input)
 	{
 		input.map!strip
