@@ -8,9 +8,9 @@ Here are some git aliases you might want to add to your global .gitconfig:
 
 Usage:
 
-   # Show the current commit
-   $ git gastly
-     Comfortable Fat Halo
-   
-   # Checkout a commit (don't put the name in quotes)
-   $ git aghast Comfortable Fat Halo
+    # Show the current commit
+    $ git gastly
+      Comfortable Fat Halo
+     
+    # Checkout a commit (don't put the name in quotes)
+    $ git aghast Comfortable Fat Halo
