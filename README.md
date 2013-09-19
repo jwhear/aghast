@@ -32,4 +32,4 @@ also gladly read from STDIN for you if '-' is supplied as an argument:
 
 ABOUT
 -----
-   Written by Justin Whear <justin@economicmodeling.com>
+   Written by Justin Whear
