@@ -1,36 +1,36 @@
 import std.stdio,
-	std.algorithm,
-	std.conv,
-	std.exception,
-	std.getopt,
-	std.range,
-	std.string;
+    std.algorithm,
+    std.conv,
+    std.exception,
+    std.getopt,
+    std.range,
+    std.string;
 
 void main(string[] args)
 {
-	bool quit = false;
-	args.getopt(
-		std.getopt.config.passThrough,
-		"help|h", { writeln(HelpText); quit = true; }
-	);
+    bool quit = false;
+    args.getopt(
+        std.getopt.config.passThrough,
+        "help|h", { writeln(HelpText); quit = true; }
+    );
 
-	if (quit) return;
+    if (quit) return;
 
     void process(Input)(Input input)
-	{
-		input.map!strip
-			.map!invert
-			.map!(l => l ~ "\n")
-			.copy(stdout.lockingTextWriter());
-	}
+    {
+        input.map!strip
+            .map!invert
+            .map!(l => l ~ "\n")
+            .copy(stdout.lockingTextWriter());
+    }
 
-	foreach (arg; args[1..$])
-	{
-		if (arg == "-")
-			process(stdin.byLine.map!(to!string));
-		else
-			process([arg]);
-	}
+    foreach (arg; args[1..$])
+    {
+        if (arg == "-")
+            process(stdin.byLine.map!(to!string));
+        else
+            process([arg]);
+    }
 
 }
 
@@ -38,42 +38,42 @@ void main(string[] args)
 //    otherwise assume it's words and turn it into a hash
 string invert(string subj)
 {
-	if (subj.isHash)
-		return subj.toWords;
-	else
-		return subj.toHash;
+    if (subj.isHash)
+        return subj.toWords;
+    else
+        return subj.toHash;
 }
 
 bool isHash(string subj)
 {
-	import std.ascii;
-	return subj.all!isHexDigit && subj.length >= 6;
+    import std.ascii;
+    return subj.all!isHexDigit && subj.length >= 6;
 }
 
 string toWords(string hash)
 in { assert(hash.length >= 6); }
 body {
-	int im = hash[0 .. 6].to!int(16 /* radix */);
-	return "%s %s %s".format(
-						words[0][(im & 0x00FF0000) >> 16].capitalize,
-						words[1][(im & 0x0000FF00) >> 8].capitalize,
-						words[2][im & 0x000000FF].capitalize
-					);
+    int im = hash[0 .. 6].to!int(16 /* radix */);
+    return "%s %s %s".format(
+                        words[0][(im & 0x00FF0000) >> 16].capitalize,
+                        words[1][(im & 0x0000FF00) >> 8].capitalize,
+                        words[2][im & 0x000000FF].capitalize
+                      );
 }
 
 string toHash(string wordstring)
 {
-	auto w = wordstring.split();
-	enforce(w.length == 3, "Expected 3 words, not "~wordstring);
+    auto w = wordstring.split();
+    enforce(w.length == 3, "Expected 3 words, not "~wordstring);
 
-	ubyte[3] im;
-	foreach (i, word; w)
-	{
-		auto idx = words[i].countUntil(word.toLower);
-		enforce(idx >= 0, "Word not found: '"~word~"'");
-		im[i] = cast(ubyte)idx;
-	}
-	return "%(%.2x%)".format(im);
+    ubyte[3] im;
+    foreach (i, word; w)
+    {
+        auto idx = words[i].countUntil(word.toLower);
+        enforce(idx >= 0, "Word not found: '"~word~"'");
+        im[i] = cast(ubyte)idx;
+    }
+    return "%(%.2x%)".format(im);
 }
 
 // HERE ENDETH THE SOURCE CODE PROPER AND BEGINNETH THE RESOURCES
@@ -112,8 +112,8 @@ ABOUT
    Written by Justin Whear <justin@economicmodeling.com>`;
 
 enum words = [
-	// List 1: adjectives
-	[
+    // List 1: adjectives
+    [
 "abandoned", "able", "absolute", "adorable", "adventurous", "academic",
 "acceptable", "acclaimed", "accomplished", "accurate", "aching", "acidic",
 "acrobatic", "active", "actual", "adept", "admirable", "admired", "adolescent",
@@ -152,10 +152,10 @@ enum words = [
 "devoted", "different", "difficult", "digital", "diligent", "dimpled",
 "dimwitted", "direct", "disastrous", "disfigured", "disgusting", "disloyal",
 "dismal", "distant", "dreary", "dirty", "disguised", "dishonest", "large",
-	],
+    ],
 
-	// List 2: more adjectives
-	[
+    // List 2: more adjectives
+    [
 "distant", "dizzy", "dopey", "doting", "drab", "drafty", "dramatic", "dreary",
 "droopy", "dry", "dull", "eager", "earnest", "early", "easy", "ecstatic",
 "edible", "educated", "elaborate", "elastic", "elated", "elderly", "electric",
@@ -194,10 +194,10 @@ enum words = [
 "intelligent", "intent", "intentional", "internal", "international", "intrepid",
 "irritating", "itchy", "jaded", "jagged", "jaunty", "jealous", "jittery",
 "jolly", "joyful"
-	],
+    ],
 
-	// List 3: nouns
-	[
+    // List 3: nouns
+    [
 "aardvark", "albatross", "alligator", "alpaca", "ant", "anteater", "antelope",
 "ape", "armadillo", "baboon", "badger", "barracuda", "bat", "bear", "beaver",
 "bee", "bison", "boar", "also", "buffalo", "galago", "butterfly", "camel",
@@ -232,7 +232,7 @@ enum words = [
 "punchbowl", "rifle", "road", "rocket", "saxophone", "scooter", "scout",
 "siren", "slipper", "starship", "teacher", "teapot", "trombone", "truck",
 "umbrella", "unicorn", "velocipede", "wallpaper", "wizard", "wrench"
-	]
+    ]
 ];
 static assert(words[0].length == 256);
 static assert(words[1].length == 256);
