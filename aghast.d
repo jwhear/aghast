@@ -23,7 +23,7 @@ void main(string[] args)
     {
         input.map!strip
             .map!(s => invert(s, maxCharsToUse))
-            .map!(l => l ~ "\n")
+            .joiner("\n")
             .copy(stdout.lockingTextWriter());
     }
 
